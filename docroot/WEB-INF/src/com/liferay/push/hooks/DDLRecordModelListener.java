@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.BaseModelListener;
@@ -41,10 +43,14 @@ public class DDLRecordModelListener extends BaseModelListener<DDLRecord> {
 	@Override
 	public void onAfterCreate(DDLRecord model) throws ModelListenerException {
 		try {
+			LogFactoryUtil.getLog("a").error("asdas", null);
 			super.onAfterCreate(model);
 
 			sendNotification(model, true);
-		} catch (PortalException | SystemException e) {
+		} catch (PortalException e) {
+			e.printStackTrace();
+		}
+		catch (SystemException e) {
 			e.printStackTrace();
 		}
 	}
@@ -52,10 +58,14 @@ public class DDLRecordModelListener extends BaseModelListener<DDLRecord> {
 	@Override
 	public void onAfterUpdate(DDLRecord model) throws ModelListenerException {
 		try {
+			LogFactoryUtil.getLog("a").error("asdas", null);
 			super.onAfterUpdate(model);
 
 			sendNotification(model, false);
-		} catch (PortalException | SystemException e) {
+		} catch (PortalException e) {
+			e.printStackTrace();
+		}
+		catch (SystemException e) {
 			e.printStackTrace();
 		}
 	}
